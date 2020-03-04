@@ -1,0 +1,107 @@
+<div class="row justify-content-center">
+    <div class="col-6 text-center">
+        <h1>Listado de personas</h1>
+    </div>
+    <div class="col-10">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Cargo</th>
+                <th>Acciones</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="p in personas">
+                    <td><a ng-click="modalEdit(p)" href="">{{p.id}}</a></td>
+                    <td>{{p.nombre}}</td>
+                    <td>{{p.edad}}</td>
+                    <td>{{p.cargo.cargo}}</td>
+                    <td><a ng-click="delete(p)" class="btn btn-danger" href="">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#add">Añadir persona</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#c">Añadir cargo</button>
+    </div>
+</div>
+<div id="add" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="row justify-content-center">
+                <div class="col-11">
+                    <form autocomplete="off" ng-submit="crear()">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input required type="text" ng-model="persona.nombre" name="nombre" class="form-control" id="nombre" placeholder="Nombre de persona">
+                        </div>
+                        <div class="form-group">
+                            <label for="edad">Edad</label>
+                            <input required type="number" ng-model="persona.edad" name="edad" class="form-control" id="edad" placeholder="Edad">
+                        </div>
+                        <div class="form-group">
+                            <label for="cargo">Cargo</label>
+                            <select required class="form-control" name="cargo" ng-model="persona.cargo.id" id="cargo">
+                                <option value="">Seleccione cargo</option>
+                                <option ng-repeat="c in cargos" value="{{c.id}}">{{c.cargo}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="c" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="row justify-content-center">
+                <div class="col-11">
+                    <form autocomplete="off" ng-submit="crearCargo()">
+                        <div class="form-group">
+                            <label for="nombre">Cargo</label>
+                            <input required type="text" ng-model="cargo" name="cargo" class="form-control" placeholder="Cargo">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="row justify-content-center">
+                <div class="col-11">
+                    <form autocomplete="off" ng-submit="editar()">
+                        <input type="hidden" name="id" ng-model="p.id">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" required ng-model="p.nombre" name="nombre" class="form-control" id="nombre" placeholder="Nombre de persona">
+                        </div>
+                        <div class="form-group">
+                            <label for="edad">Edad</label>
+                            <input type="number" required ng-model="p.edad" name="edad" class="form-control" id="edad" placeholder="Edad">
+                        </div>
+                        <div class="form-group">
+                            <label for="cargo">Cargo</label>
+                            <select required class="form-control" name="cargo" ng-model="p.cargo.id" id="editar" convert-to-number>
+                                <option value="">Seleccione cargo</option>
+                                <option ng-repeat="c in cargos" value="{{c.id}}" ng-selected="{{c.id == p.cargo.id}}">{{c.cargo}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

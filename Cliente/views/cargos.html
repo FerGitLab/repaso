@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-6">
+        <form autocomplete="off" ng-submit="crear()">
+            <div class="form-group">
+                <label for="nombre">Cargo</label>
+                <input type="text" required ng-model="cargo" name="cargo" class="form-control" placeholder="Cargo">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Crear</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-12"></div>
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <th>Id</th>
+                <th>Cargo</th>
+                <th>Acciones</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="c in cargos">
+                    <td><a ng-click="modalEdit(c)" href="">{{c.id}}</a></td>
+                    <td>{{c.cargo}}</td>
+                    <td><a ng-click="delete(c)" class="btn btn-danger" href="">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="row justify-content-center">
+                <div class="col-11">
+                    <form autocomplete="off" ng-submit="editar()">
+                        <input type="hidden" ng-model="c.id">
+                        <div class="form-group">
+                            <label for="nombre">Cargo</label>
+                            <input type="text" required ng-model="c.cargo" name="cargo" class="form-control" placeholder="Cargo">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

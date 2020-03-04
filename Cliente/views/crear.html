@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+    <div class="col-10">
+        <form autocomplete="off" ng-submit="crear()">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" ng-model="persona.nombre" name="nombre" class="form-control" id="nombre" placeholder="Nombre de persona">
+            </div>
+            <div class="form-group">
+                <label for="edad">Edad</label>
+                <input type="number" ng-model="persona.edad" name="edad" class="form-control" id="edad" placeholder="Edad">
+            </div>
+            <div class="form-group">
+                <label for="cargo">Cargo</label>
+                <select class="form-control" name="cargo" ng-model="persona.cargo.id" id="cargo">
+                    <option value="">Seleccione cargo</option>
+                    <option ng-repeat="c in cargos" value="{{c.id}}">{{c.cargo}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Crear</button>
+            </div>
+        </form>
+    </div>
+</div>
